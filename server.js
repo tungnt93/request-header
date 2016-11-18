@@ -5,7 +5,8 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function (req, res) {
-  res.send("Hello world!")
+	var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+	res.send('User-Agent: ' + ip);
 });
 
 
