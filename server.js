@@ -6,7 +6,11 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function (req, res) {
 	var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
-	res.send('User-Agent: ' + ip);
+	var language = request.headers['accept-language'];
+	res.send({
+		ipaddress: ip,
+		language: language
+	});
 });
 
 
